@@ -8,7 +8,7 @@ contract Teacher is Person {
         profession.push(_profession);
     }
 
-    function addsubject(string memory _subject) public {
+    function addSubject(string memory _subject) public {
         subject.push(_subject);
     }
 
