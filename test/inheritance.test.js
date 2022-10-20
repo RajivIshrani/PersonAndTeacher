@@ -1,21 +1,28 @@
 const { ethers } = require("hardhat")
 const { assert, expect } = require("chai")
 
+let teacherInstanceAddress
+let teacherInstance
+// let teacherInstance
+async function deploy() {
+    const teacher = await ethers.getContractFactory("Teacher")
+    teacherInstance = await teacher.deploy()
+    await teacherInstance.deployed()
+    teacherInstanceAddress = teacherInstance.address
+    console.log(teacherInstance)
+    console.log("Teacher Address:", teacherInstanceAddress)
+}
+
 describe("Teacher Contract", () => {
-    let teacherInstance
+    // beforeEach(async () => {
+    //     // Deploy Teacher Contract
 
-    beforeEach(async () => {
-        // Deploy Teacher Contract
-        let teacherInstanceAddress
-        const teacher = await ethers.getContractFactory("Teacher")
-        const teacherInstance = await teacher.deploy()
-        await teacherInstance.deployed()
-        teacherInstanceAddress = teacherInstance.address
-        console.log("Teacher Address:", teacherInstanceAddress)
-    })
-
+    // })
+    deploy()
     it("Should take only string in addProfession()", async () => {
         const _profession = "Teacher"
+        const txRecipt = await teacherInstance.addProfession(_profession)
+        console.log(txRecipt)
         assert.equal(_profession, "Teacher")
     })
 
