@@ -10,7 +10,7 @@ async function main() {
     const teacher = await ethers.getContractFactory("Teacher")
     teacherInstance = await teacher.deploy()
     await teacherInstance.deployed()
-    teacherInstanceAddress = teacherInstance.address
+    const teacherInstanceAddress = teacherInstance.address
     console.log(teacherInstance)
     console.log("Teacher Address:", teacherInstanceAddress)
 }
